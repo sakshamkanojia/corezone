@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RigForge — PC Hardware & Components</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0a0b0f;--bg2:#111318;--bg3:#1a1c24;--bg4:#22252f;
+  --accent:#e8420a;--accent2:#ff6b35;--text:#f0f0ee;--muted:#7a7d8a;--border:#2a2d38;
+  --green:#1dbb7a;--blue:#2d8ef5;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-size:15px;line-height:1.6;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--accent);border-radius:3px}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(10,11,15,0.95);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:64px}
+.nav-logo{font-family:'Barlow Condensed',sans-serif;font-size:26px;font-weight:800;letter-spacing:1px}
+.nav-logo span{color:var(--accent)}
+.nav-links{display:flex;gap:32px}
+.nav-links a{font-size:13px;font-weight:500;color:var(--muted);letter-spacing:.5px;text-transform:uppercase;transition:color .2s;cursor:pointer}
+.nav-links a:hover{color:var(--text)}
+.nav-right{display:flex;align-items:center;gap:16px}
+.nav-search{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:8px 16px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:13px;width:200px;outline:none;transition:border-color .2s}
+.nav-search:focus{border-color:var(--accent)}
+.nav-search::placeholder{color:var(--muted)}
+.btn-cart{background:var(--accent);color:#fff;border:none;border-radius:8px;padding:9px 20px;font-family:'DM Sans',sans-serif;font-weight:500;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:8px;transition:background .2s}
+.btn-cart:hover{background:var(--accent2)}
+.cart-badge{background:#fff;color:var(--accent);border-radius:50%;width:18px;height:18px;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center}
+
+/* HERO */
+.hero{margin-top:64px;min-height:92vh;display:grid;grid-template-columns:1fr 1fr;position:relative;overflow:hidden}
+.hero-left{padding:80px 64px;display:flex;flex-direction:column;justify-content:center;z-index:2}
+.hero-tag{display:inline-flex;align-items:center;gap:8px;background:rgba(232,66,10,0.12);border:1px solid rgba(232,66,10,0.3);border-radius:100px;padding:6px 16px;font-size:12px;font-weight:500;color:var(--accent);text-transform:uppercase;letter-spacing:1px;margin-bottom:28px;width:fit-content}
+.hero-tag::before{content:'';width:6px;height:6px;background:var(--accent);border-radius:50%;flex-shrink:0}
+.hero h1{font-family:'Barlow Condensed',sans-serif;font-size:86px;font-weight:800;line-height:.95;letter-spacing:-1px;margin-bottom:24px}
+.hero h1 em{font-style:normal;color:var(--accent);display:block}
+.hero p{color:var(--muted);font-size:16px;max-width:420px;margin-bottom:40px;line-height:1.7}
+.hero-btns{display:flex;gap:16px;flex-wrap:wrap}
+.btn-primary{background:var(--accent);color:#fff;border:none;border-radius:10px;padding:14px 32px;font-family:'DM Sans',sans-serif;font-weight:500;font-size:15px;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:10px}
+.btn-primary:hover{background:var(--accent2);transform:translateY(-2px)}
+.btn-ghost{background:transparent;color:var(--text);border:1px solid var(--border);border-radius:10px;padding:14px 32px;font-family:'DM Sans',sans-serif;font-weight:500;font-size:15px;cursor:pointer;transition:all .2s}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
+.hero-stats{display:flex;gap:40px;margin-top:56px;padding-top:40px;border-top:1px solid var(--border)}
+.stat-num{font-family:'Barlow Condensed',sans-serif;font-size:36px;font-weight:800}
+.stat-label{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
+.hero-right{position:relative;overflow:hidden;background:var(--bg2)}
+.hero-bg-grid{position:absolute;inset:0;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:40px 40px;opacity:.3}
+.hero-glow{position:absolute;width:600px;height:600px;background:radial-gradient(circle,rgba(232,66,10,0.18) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none}
+.hero-img-wrap{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:48px}
+.hero-img-wrap img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 0 60px rgba(232,66,10,0.3));position:relative;z-index:1}
+.floating-tag{position:absolute;background:rgba(26,28,36,0.95);border:1px solid var(--border);backdrop-filter:blur(8px);border-radius:12px;padding:12px 16px;font-size:13px;font-weight:500;display:flex;align-items:center;gap:8px;z-index:10}
+.float1{top:15%;left:4%;animation:floatA 4s ease-in-out infinite}
+.float2{bottom:18%;right:4%;animation:floatB 5s ease-in-out infinite}
+@keyframes floatA{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes floatB{0%,100%{transform:translateY(0)}50%{transform:translateY(10px)}}
+.dot-green{width:8px;height:8px;background:var(--green);border-radius:50%;flex-shrink:0}
+.dot-blue{width:8px;height:8px;background:var(--blue);border-radius:50%;flex-shrink:0}
+
+/* TICKER */
+.ticker{background:var(--accent);padding:12px 0;overflow:hidden;white-space:nowrap}
+.ticker-inner{display:inline-flex;animation:ticker 24s linear infinite}
+.ticker-inner span{font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:600;letter-spacing:1px;text-transform:uppercase;padding:0 40px;color:#fff}
+.ticker-inner span::after{content:'◆';margin-left:40px}
+@keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* SECTIONS */
+section{padding:80px 48px}
+.section-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:48px}
+.section-label{font-size:12px;font-weight:500;color:var(--accent);text-transform:uppercase;letter-spacing:2px;margin-bottom:10px}
+.section-title{font-family:'Barlow Condensed',sans-serif;font-size:44px;font-weight:800;line-height:1}
+.view-all{font-size:13px;color:var(--accent);border-bottom:1px solid var(--accent);padding-bottom:2px;cursor:pointer;transition:opacity .2s;white-space:nowrap}
+.view-all:hover{opacity:.7}
+
+/* CATEGORIES */
+.categories-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:16px}
+.cat-card{background:var(--bg3);border:1px solid var(--border);border-radius:16px;overflow:hidden;cursor:pointer;transition:all .25s;position:relative}
+.cat-card:hover{border-color:var(--accent);transform:translateY(-4px)}
+.cat-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent2));transform:scaleX(0);transition:transform .3s}
+.cat-card:hover::after{transform:scaleX(1)}
+.cat-img{width:100%;height:110px;object-fit:cover;display:block}
+.cat-body{padding:12px 14px}
+.cat-name{font-size:13px;font-weight:600}
+.cat-count{font-size:11px;color:var(--muted);margin-top:3px}
+
+/* PRODUCTS */
+.products-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.product-card{background:var(--bg3);border:1px solid var(--border);border-radius:16px;overflow:hidden;cursor:pointer;transition:all .25s;position:relative;display:flex;flex-direction:column}
+.product-card:hover{border-color:rgba(232,66,10,.5);transform:translateY(-5px);box-shadow:0 24px 48px rgba(0,0,0,.5)}
+.product-badge{position:absolute;top:12px;left:12px;z-index:3;font-size:11px;font-weight:700;padding:4px 10px;border-radius:6px;text-transform:uppercase;letter-spacing:.5px}
+.badge-new{background:var(--green);color:#fff}
+.badge-hot{background:var(--accent);color:#fff}
+.badge-sale{background:#f5c518;color:#000}
+.badge-best{background:var(--blue);color:#fff}
+.product-img{height:210px;background:var(--bg4);position:relative;overflow:hidden;flex-shrink:0}
+.product-img img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+.product-card:hover .product-img img{transform:scale(1.06)}
+.product-img-overlay{position:absolute;inset:0;background:linear-gradient(to top,var(--bg4) 0%,transparent 50%);opacity:.4}
+.product-body{padding:20px;flex:1;display:flex;flex-direction:column}
+.product-brand{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
+.product-name{font-size:14px;font-weight:500;line-height:1.4;margin-bottom:8px;flex:1}
+.product-specs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+.spec-tag{font-size:11px;background:var(--bg4);border:1px solid var(--border);border-radius:5px;padding:3px 8px;color:var(--muted)}
+.product-bottom{display:flex;align-items:center;justify-content:space-between;margin-top:auto}
+.product-price{font-family:'Barlow Condensed',sans-serif;font-size:24px;font-weight:700}
+.product-price-old{font-size:12px;color:var(--muted);text-decoration:line-through;margin-top:2px}
+.btn-add{background:var(--accent);color:#fff;border:none;border-radius:8px;width:38px;height:38px;font-size:22px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;flex-shrink:0}
+.btn-add:hover{background:var(--accent2);transform:scale(1.1)}
+.stars{font-size:12px;color:#f5c518;margin-bottom:6px}
+.rating-count{font-size:11px;color:var(--muted);margin-left:4px}
+
+/* FEATURED BANNER */
+.featured-banner{margin:0 48px 80px;background:var(--bg3);border:1px solid var(--border);border-radius:24px;overflow:hidden;display:grid;grid-template-columns:1fr 1fr;min-height:360px;position:relative}
+.featured-banner::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(232,66,10,.07),transparent);pointer-events:none}
+.banner-left{padding:56px;display:flex;flex-direction:column;justify-content:center;z-index:2}
+.banner-tag{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:600;color:var(--accent);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:16px}
+.banner-title{font-family:'Barlow Condensed',sans-serif;font-size:52px;font-weight:800;line-height:1;margin-bottom:16px}
+.banner-desc{color:var(--muted);font-size:14px;line-height:1.7;max-width:360px;margin-bottom:24px}
+.banner-right{position:relative;overflow:hidden}
+.banner-right img{width:100%;height:100%;object-fit:cover}
+.banner-right-overlay{position:absolute;inset:0;background:linear-gradient(to right,var(--bg3) 0%,transparent 40%)}
+.timer{display:flex;gap:12px}
+.timer-box{background:var(--bg4);border:1px solid var(--border);border-radius:10px;padding:10px 14px;text-align:center;min-width:60px}
+.timer-num{font-family:'Barlow Condensed',sans-serif;font-size:28px;font-weight:800;color:var(--accent);line-height:1}
+.timer-label{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+
+/* BRANDS */
+.brands-section{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:0 48px}
+.brands-grid{display:flex;align-items:center;justify-content:center;flex-wrap:wrap}
+.brand-item{padding:28px 36px;border-right:1px solid var(--border);font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:700;color:var(--muted);letter-spacing:2px;text-transform:uppercase;transition:color .2s;cursor:pointer}
+.brand-item:last-child{border-right:none}
+.brand-item:hover{color:var(--text)}
+
+/* SETUP SHOWCASE */
+.setup-showcase{display:grid;grid-template-columns:1fr 1fr;gap:0;overflow:hidden;border-radius:24px;margin:0 48px 80px;border:1px solid var(--border)}
+.setup-img{position:relative;height:420px;overflow:hidden}
+.setup-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.setup-img:hover img{transform:scale(1.04)}
+.setup-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,11,15,.9) 0%,transparent 60%);display:flex;flex-direction:column;justify-content:flex-end;padding:32px}
+.setup-title{font-family:'Barlow Condensed',sans-serif;font-size:28px;font-weight:800;margin-bottom:8px}
+.setup-sub{font-size:13px;color:rgba(240,240,238,.7);margin-bottom:16px}
+
+/* WHY */
+.why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.why-card{background:var(--bg3);border:1px solid var(--border);border-radius:16px;padding:32px 24px;transition:border-color .2s}
+.why-card:hover{border-color:rgba(232,66,10,.3)}
+.why-icon{width:48px;height:48px;background:rgba(232,66,10,.12);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:20px}
+.why-title{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:700;margin-bottom:8px}
+.why-desc{font-size:13px;color:var(--muted);line-height:1.7}
+
+/* NEWSLETTER */
+.newsletter{background:var(--bg3);border:1px solid var(--border);border-radius:24px;margin:0 48px 80px;padding:64px;text-align:center;position:relative;overflow:hidden}
+.newsletter::before{content:'';position:absolute;top:-100px;left:50%;transform:translateX(-50%);width:500px;height:300px;background:radial-gradient(circle,rgba(232,66,10,.08),transparent 70%);pointer-events:none}
+.newsletter h2{font-family:'Barlow Condensed',sans-serif;font-size:48px;font-weight:800;margin-bottom:12px;position:relative}
+.newsletter p{color:var(--muted);margin-bottom:32px;font-size:15px;position:relative}
+.newsletter-form{display:flex;gap:12px;max-width:480px;margin:0 auto;position:relative}
+.newsletter-input{flex:1;background:var(--bg4);border:1px solid var(--border);border-radius:10px;padding:14px 20px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:14px;outline:none;transition:border-color .2s}
+.newsletter-input:focus{border-color:var(--accent)}
+.newsletter-input::placeholder{color:var(--muted)}
+
+/* FOOTER */
+footer{background:var(--bg2);border-top:1px solid var(--border);padding:64px 48px 32px}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:48px}
+.footer-brand p{color:var(--muted);font-size:13px;line-height:1.7;max-width:280px;margin-top:16px}
+.footer-col h4{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);margin-bottom:20px}
+.footer-col a{display:block;font-size:13px;color:var(--muted);margin-bottom:10px;transition:color .2s}
+.footer-col a:hover{color:var(--text)}
+.footer-bottom{border-top:1px solid var(--border);padding-top:24px;display:flex;justify-content:space-between;align-items:center}
+.footer-bottom p{font-size:12px;color:var(--muted)}
+.footer-socials{display:flex;gap:12px}
+.social-btn{width:36px;height:36px;background:var(--bg4);border:1px solid var(--border);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px;cursor:pointer;transition:all .2s;color:var(--muted)}
+.social-btn:hover{border-color:var(--accent);color:var(--accent)}
+
+/* CART NOTIFICATION */
+.cart-notif{position:fixed;bottom:32px;right:32px;background:var(--green);color:#fff;border-radius:12px;padding:14px 20px;font-size:14px;font-weight:500;display:flex;align-items:center;gap:10px;z-index:9999;transform:translateY(100px);opacity:0;transition:all .4s;pointer-events:none;max-width:320px}
+.cart-notif.show{transform:translateY(0);opacity:1}
+
+/* FILTER BAR */
+.filter-bar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:32px}
+.filter-btn{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:8px 18px;font-family:'DM Sans',sans-serif;font-size:13px;color:var(--muted);cursor:pointer;transition:all .2s}
+.filter-btn:hover,.filter-btn.active{background:var(--accent);border-color:var(--accent);color:#fff}
+
+@media(max-width:1100px){
+  .products-grid{grid-template-columns:repeat(3,1fr)}
+  .categories-grid{grid-template-columns:repeat(3,1fr)}
+  .hero h1{font-size:64px}
+}
+@media(max-width:768px){
+  nav{padding:0 16px}.nav-links{display:none}
+  .hero{grid-template-columns:1fr;min-height:auto}
+  .hero-left{padding:40px 20px}.hero h1{font-size:48px}
+  .hero-right{height:260px}
+  section{padding:48px 16px}
+  .products-grid{grid-template-columns:repeat(2,1fr)}
+  .categories-grid{grid-template-columns:repeat(2,1fr)}
+  .featured-banner,.setup-showcase{grid-template-columns:1fr;margin:0 16px 48px}
+  .banner-right{height:200px}.footer-grid{grid-template-columns:1fr 1fr}
+  .why-grid{grid-template-columns:1fr 1fr}
+  .newsletter{margin:0 16px 48px;padding:40px 20px}
+  .brands-section{padding:0 16px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">RIG<span>FORGE</span></div>
+  <div class="nav-links">
+    <a onclick="scroll2('categories')">Components</a>
+    <a onclick="scroll2('products')">Shop</a>
+    <a onclick="scroll2('deals')">Deals</a>
+    <a onclick="scroll2('brands')">Brands</a>
+    <a onclick="scroll2('contact')">Contact</a>
+  </div>
+  <div class="nav-right">
+    <input class="nav-search" type="text" placeholder="Search components..." oninput="liveSearch(this.value)">
+    <button class="btn-cart" onclick="showCart()">
+      🛒 Cart <span class="cart-badge" id="cartCount">0</span>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-left">
+    <div class="hero-tag">🔥 New Stock Arrived — RTX 5090 Live</div>
+    <h1>BUILD YOUR<em>DREAM</em>RIG.</h1>
+    <p>Premium PC hardware, components, laptops & peripherals. Everything you need to build, upgrade or power your setup — shipped fast across India.</p>
+    <div class="hero-btns">
+      <button class="btn-primary" onclick="scroll2('products')">Shop Components →</button>
+      <button class="btn-ghost" onclick="scroll2('categories')">Browse Categories</button>
+    </div>
+    <div class="hero-stats">
+      <div><div class="stat-num">500+</div><div class="stat-label">Products</div></div>
+      <div><div class="stat-num">50+</div><div class="stat-label">Brands</div></div>
+      <div><div class="stat-num">24/7</div><div class="stat-label">Support</div></div>
+      <div><div class="stat-num">99%</div><div class="stat-label">Satisfied</div></div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-bg-grid"></div>
+    <div class="hero-glow"></div>
+    <div class="hero-img-wrap">
+      <img src="https://m.media-amazon.com/images/I/71nd+jBIGkL._AC_SL1500_.jpg" alt="NVIDIA RTX 4080 Graphics Card" onerror="this.src='https://via.placeholder.com/500x400/1a1c24/e8420a?text=RTX+4080'">
+    </div>
+    <div class="floating-tag float1"><span class="dot-green"></span> In Stock · Ships Today</div>
+    <div class="floating-tag float2"><span class="dot-blue"></span> 2 Year Warranty</div>
+  </div>
+</div>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-inner">
+    <span>Free Shipping on orders above ₹5000</span>
+    <span>RTX 5090 Now Available</span>
+    <span>Intel Core Ultra 9 Series In Stock</span>
+    <span>AMD Ryzen 9000 Series Live</span>
+    <span>DDR5 RAM Starting ₹3499</span>
+    <span>PCIe 5.0 SSDs Up To 14000MB/s</span>
+    <span>Free Shipping on orders above ₹5000</span>
+    <span>RTX 5090 Now Available</span>
+    <span>Intel Core Ultra 9 Series In Stock</span>
+    <span>AMD Ryzen 9000 Series Live</span>
+    <span>DDR5 RAM Starting ₹3499</span>
+    <span>PCIe 5.0 SSDs Up To 14000MB/s</span>
+  </div>
+</div>
+
+<!-- CATEGORIES -->
+<section id="categories">
+  <div class="section-header">
+    <div>
+      <div class="section-label">Shop by Category</div>
+      <div class="section-title">ALL COMPONENTS</div>
+    </div>
+    <a class="view-all" onclick="filterProducts('All')">View All →</a>
+  </div>
+  <div class="categories-grid">
+    <div class="cat-card" onclick="filterProducts('GPU')">
+      <img class="cat-img" src="https://m.media-amazon.com/images/I/71nd+jBIGkL._AC_SL1500_.jpg" alt="Graphics Cards" onerror="this.style.background='#22252f';this.style.height='110px'">
+      <div class="cat-body"><div class="cat-name">Graphics Cards</div><div class="cat-count">48 Products</div></div>
+    </div>
+    <div class="cat-card" onclick="filterProducts('CPU')">
+      <img class="cat-img" src="https://www.amd.com/content/dam/amd/en/images/products/processors/ryzen/2523266-ryzen-9-7900x-PIB-1260x709.png" alt="Processors" onerror="this.style.background='#22252f'">
+      <div class="cat-body"><div class="cat-name">Processors</div><div class="cat-count">62 Products</div></div>
+    </div>
+    <div class="cat-card" onclick="filterProducts('RAM')">
+      <img class="cat-img" src="https://m.media-amazon.com/images/I/71G-YAG6CLL._AC_SL1500_.jpg" alt="RAM Memory" onerror="this.style.background='#22252f'">
+      <div class="cat-body"><div class="cat-name">RAM / Memory</div><div class="cat-count">35 Products</div></div>
+    </div>
+    <div class="cat-card" onclick="filterProducts('Motherboard')">
+      <img class="cat-img" src="https://dlcdnwebimgs.asus.com/gain/B2A13849-5A1E-4856-83F4-5B03F94B2E38/w1000/h732" alt="Motherboards" onerror="this.style.background='#22252f'">
+      <div class="cat-body"><div class="cat-name">Motherboards</div><div class="cat-count">44 Products</div></div>
+    </div>
+    <div class="cat-card" onclick="filterProducts('SSD')">
+      <img class="cat-img" src="https://images.samsung.com/is/image/samsung/p6pim/uk/mz-v8p2t0bw/gallery/uk-980-pro-mz-v8p2t0bw-530891557?$650_519_PNG$" alt="SSD Storage" onerror="this.style.background='#22252f'">
+      <div class="cat-body"><div class="cat-name">Storage / SSD</div><div class="cat-count">58 Products</div></div>
+    </div>
+    <div class="cat-card" onclick="filterProducts('Cabinet')">
+      <img class="cat-img" src="https://m.media-amazon.com/images/I/71jFpz5LOEL._AC_SL1500_.jpg" alt="PC Cabinet" onerror="this.style.background='#22252f'">
+      <div class="cat-body"><div class="cat-name">Cabinets / Cases</div><div class="cat-count">30 Products</div></div>
+    </div>
+    <div class="cat-card" onclick="filterProducts('SMPS')">
+      <img class="cat-img" src="https://m.media-amazon.com/images/I/81s+yAFbA8L._AC_SL1500_.jpg" alt="SMPS PSU" onerror="this.style.background='#22252f'">
+      <div class="cat-body"><div class="cat-name">SMPS / PSU</div><div class="cat-count">26 Products</div></div>
+    </div>
+    <div class="cat-card" onclick="filterProducts('Cooling')">
+      <img class="cat-img" src="https://m.media-amazon.com/images/I/81fkP6OYSKL._AC_SL1500_.jpg" alt="CPU Cooler" onerror="this.style.background='#22252f'">
+      <div class="cat-body"><div class="cat-name">Cooling / Fans</div><div class="cat-count">40 Products</div></div>
+    </div>
+    <div class="cat-card" onclick="filterProducts('Monitor')">
+      <img class="cat-img" src="https://www.lg.com/us/images/monitors/md08003744/gallery/DZ-01.jpg" alt="Gaming Monitor" onerror="this.style.background='#22252f'">
+      <div class="cat-body"><div class="cat-name">Monitors</div><div class="cat-count">52 Products</div></div>
+    </div>
+    <div class="cat-card" onclick="filterProducts('Laptop')">
+      <img class="cat-img" src="https://dlcdnwebimgs.asus.com/gain/DE2EA84B-5E0B-4DCB-A30D-2693D21DDEF1/w1000/h732" alt="Gaming Laptop" onerror="this.style.background='#22252f'">
+      <div class="cat-body"><div class="cat-name">Laptops</div><div class="cat-count">70 Products</div></div>
+    </div>
+    <div class="cat-card" onclick="filterProducts('Keyboard')">
+      <img class="cat-img" src="https://dlcdnwebimgs.asus.com/gain/03FA4B80-6FE6-4CD1-B6E5-FA51C0E5CBAF/w1000/h732" alt="Gaming Keyboard" onerror="this.style.background='#22252f'">
+      <div class="cat-body"><div class="cat-name">Keyboards</div><div class="cat-count">38 Products</div></div>
+    </div>
+    <div class="cat-card" onclick="filterProducts('All')">
+      <div style="height:110px;background:linear-gradient(135deg,var(--bg4),var(--bg3));display:flex;align-items:center;justify-content:center;font-size:40px">🛒</div>
+      <div class="cat-body"><div class="cat-name">All Products</div><div class="cat-count">500+ Products</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- DEAL BANNER -->
+<div class="featured-banner" id="deals">
+  <div class="banner-left">
+    <div class="banner-tag">⚡ Deal of the Day</div>
+    <div class="banner-title">AMD RYZEN 9<br>9900X PROCESSOR</div>
+    <div class="banner-desc">12 cores, 24 threads. 5.6GHz boost clock. AM5 socket. Dominate gaming and content creation at an unbeatable price.</div>
+    <div class="timer">
+      <div class="timer-box"><div class="timer-num" id="th">08</div><div class="timer-label">Hours</div></div>
+      <div class="timer-box"><div class="timer-num" id="tm">34</div><div class="timer-label">Mins</div></div>
+      <div class="timer-box"><div class="timer-num" id="ts">22</div><div class="timer-label">Secs</div></div>
+    </div>
+    <div style="margin-top:24px;display:flex;align-items:baseline;gap:12px;flex-wrap:wrap">
+      <span style="font-family:'Barlow Condensed',sans-serif;font-size:44px;font-weight:800;color:var(--accent)">₹32,999</span>
+      <span style="color:var(--muted);text-decoration:line-through;font-size:18px">₹44,000</span>
+      <span style="background:var(--green);color:#fff;font-size:12px;font-weight:700;padding:5px 12px;border-radius:6px">25% OFF</span>
+    </div>
+    <button class="btn-primary" style="margin-top:20px;width:max-content" onclick="addToCart('Ryzen 9 9900X')">Grab This Deal →</button>
+  </div>
+  <div class="banner-right">
+    <div class="banner-right-overlay"></div>
+    <img src="https://www.amd.com/content/dam/amd/en/images/products/processors/ryzen/2523266-ryzen-9-7900x-PIB-1260x709.png" alt="AMD Ryzen 9" onerror="this.parentNode.style.background='var(--bg4)';this.style.display='none'">
+  </div>
+</div>
+
+<!-- PRODUCTS -->
+<section id="products">
+  <div class="section-header">
+    <div>
+      <div class="section-label">Featured Products</div>
+      <div class="section-title" id="productsTitle">BEST SELLERS</div>
+    </div>
+    <div style="display:flex;gap:12px;align-items:center">
+      <select id="sortSelect" onchange="sortProducts()" style="background:var(--bg3);border:1px solid var(--border);border-radius:8px;color:var(--text);padding:8px 14px;font-family:'DM Sans',sans-serif;font-size:13px;cursor:pointer;outline:none">
+        <option value="default">Sort: Featured</option>
+        <option value="price-low">Price: Low to High</option>
+        <option value="price-high">Price: High to Low</option>
+        <option value="rating">Best Rated</option>
+      </select>
+      <a class="view-all">View All</a>
+    </div>
+  </div>
+  <div class="filter-bar" id="filterBar">
+    <button class="filter-btn active" onclick="filterProducts('All',this)">All</button>
+    <button class="filter-btn" onclick="filterProducts('GPU',this)">GPUs</button>
+    <button class="filter-btn" onclick="filterProducts('CPU',this)">CPUs</button>
+    <button class="filter-btn" onclick="filterProducts('RAM',this)">RAM</button>
+    <button class="filter-btn" onclick="filterProducts('Motherboard',this)">Motherboards</button>
+    <button class="filter-btn" onclick="filterProducts('SSD',this)">Storage</button>
+    <button class="filter-btn" onclick="filterProducts('Cabinet',this)">Cabinets</button>
+    <button class="filter-btn" onclick="filterProducts('SMPS',this)">SMPS</button>
+    <button class="filter-btn" onclick="filterProducts('Cooling',this)">Cooling</button>
+    <button class="filter-btn" onclick="filterProducts('Monitor',this)">Monitors</button>
+    <button class="filter-btn" onclick="filterProducts('Laptop',this)">Laptops</button>
+  </div>
+  <div class="products-grid" id="productsGrid"></div>
+  <div style="text-align:center;margin-top:40px">
+    <button class="btn-ghost" onclick="loadMore()">Load More Products</button>
+  </div>
+</section>
+
+<!-- SETUP SHOWCASE -->
+<div class="setup-showcase">
+  <div class="setup-img">
+    <img src="https://cdn.mos.cms.futurecdn.net/xRmGMGzEe9L9JLcm2XzpNj.jpg" alt="RGB Gaming PC Setup" onerror="this.src='https://via.placeholder.com/800x420/1a1c24/e8420a?text=Gaming+PC+Setup'">
+    <div class="setup-overlay">
+      <div class="setup-title">Ultimate Gaming Rig</div>
+      <div class="setup-sub">RTX 5090 · Core Ultra 9 · 64GB DDR5</div>
+      <button class="btn-primary" style="width:max-content" onclick="filterProducts('All')">Build Yours →</button>
+    </div>
+  </div>
+  <div class="setup-img">
+    <img src="https://m.media-amazon.com/images/I/81s+yAFbA8L._AC_SL1500_.jpg" alt="PC Components" onerror="this.src='https://via.placeholder.com/800x420/1a1c24/e8420a?text=PC+Components'">
+    <div class="setup-overlay">
+      <div class="setup-title">Budget Builder</div>
+      <div class="setup-sub">RX 7600 · Ryzen 5 · 16GB DDR5</div>
+      <button class="btn-primary" style="width:max-content" onclick="filterProducts('GPU')">Shop Budget GPUs →</button>
+    </div>
+  </div>
+</div>
+
+<!-- BRANDS -->
+<div class="brands-section" id="brands">
+  <div style="text-align:center;padding:28px 0 16px;font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:2px;font-weight:500">Authorized Dealer For</div>
+  <div class="brands-grid">
+    <div class="brand-item">NVIDIA</div>
+    <div class="brand-item">AMD</div>
+    <div class="brand-item">INTEL</div>
+    <div class="brand-item">ASUS</div>
+    <div class="brand-item">MSI</div>
+    <div class="brand-item">GIGABYTE</div>
+    <div class="brand-item">CORSAIR</div>
+    <div class="brand-item">SAMSUNG</div>
+    <div class="brand-item">SEAGATE</div>
+    <div class="brand-item">WD</div>
+  </div>
+</div>
+
+<!-- WHY US -->
+<section>
+  <div class="section-header">
+    <div>
+      <div class="section-label">Why Choose Us</div>
+      <div class="section-title">THE RIGFORGE PROMISE</div>
+    </div>
+  </div>
+  <div class="why-grid">
+    <div class="why-card"><div class="why-icon">🚚</div><div class="why-title">Fast Delivery</div><div class="why-desc">Same-day dispatch on orders placed before 2 PM. Pan-India shipping within 2–5 business days.</div></div>
+    <div class="why-card"><div class="why-icon">🔒</div><div class="why-title">Genuine Products</div><div class="why-desc">100% authentic hardware from authorized distributors. Every product comes with official manufacturer warranty.</div></div>
+    <div class="why-card"><div class="why-icon">🛠️</div><div class="why-title">Expert Support</div><div class="why-desc">Our team of PC enthusiasts is available 7 days a week to help you pick the right parts for your build.</div></div>
+    <div class="why-card"><div class="why-icon">🔄</div><div class="why-title">Easy Returns</div><div class="why-desc">7-day hassle-free return policy. Dead-on-arrival replacement within 24 hours, no questions asked.</div></div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<div class="newsletter" id="contact">
+  <div style="font-size:12px;color:var(--accent);text-transform:uppercase;letter-spacing:2px;font-weight:500;margin-bottom:12px">Stay Updated</div>
+  <h2>GET DEALS BEFORE<br>ANYONE ELSE</h2>
+  <p>Subscribe to get early access to deals, new arrivals and restocks. No spam, ever.</p>
+  <div class="newsletter-form">
+    <input class="newsletter-input" type="email" placeholder="Enter your email address" id="emailInput">
+    <button class="btn-primary" onclick="subscribe()">Subscribe</button>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="nav-logo">RIG<span>FORGE</span></div>
+      <p>Your one-stop destination for all PC hardware, components, laptops and peripherals. Building rigs since 2018.</p>
+      <div style="margin-top:20px;font-size:13px;color:var(--muted)">📍 Delhi, India &nbsp;|&nbsp; 📞 +91 98765 43210</div>
+      <div style="margin-top:6px;font-size:13px;color:var(--muted)">📧 support@rigforge.in</div>
+    </div>
+    <div class="footer-col">
+      <h4>Products</h4>
+      <a href="#">Graphics Cards</a><a href="#">Processors</a><a href="#">Motherboards</a><a href="#">RAM</a><a href="#">Storage</a><a href="#">Power Supply</a>
+    </div>
+    <div class="footer-col">
+      <h4>Support</h4>
+      <a href="#">Track Order</a><a href="#">Returns & Refunds</a><a href="#">Warranty Claims</a><a href="#">FAQ</a><a href="#">Contact Us</a>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="#">About Us</a><a href="#">Careers</a><a href="#">Blog</a><a href="#">Privacy Policy</a><a href="#">Terms of Service</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 RigForge. All rights reserved. Made with ❤️ for PC enthusiasts in India.</p>
+    <div class="footer-socials">
+      <div class="social-btn" title="Facebook">📘</div>
+      <div class="social-btn" title="Instagram">📸</div>
+      <div class="social-btn" title="Twitter">🐦</div>
+      <div class="social-btn" title="YouTube">▶️</div>
+    </div>
+  </div>
+</footer>
+
+<div class="cart-notif" id="cartNotif">✅ Added to cart!</div>
+
+<script>
+const products=[
+  // GPUs
+  {id:1,name:'NVIDIA RTX 5090 24GB GDDR7',brand:'NVIDIA',cat:'GPU',price:189999,old:210000,badge:'new',img:'https://m.media-amazon.com/images/I/71nd+jBIGkL._AC_SL1500_.jpg',specs:['24GB GDDR7','PCIe 5.0','512-bit'],stars:5,reviews:128},
+  {id:2,name:'NVIDIA RTX 4080 Super 16GB',brand:'NVIDIA',cat:'GPU',price:89999,old:99999,badge:'hot',img:'https://m.media-amazon.com/images/I/71nd+jBIGkL._AC_SL1500_.jpg',specs:['16GB GDDR6X','PCIe 4.0','256-bit'],stars:5,reviews:214},
+  {id:3,name:'AMD Radeon RX 7900 XTX 24GB',brand:'AMD',cat:'GPU',price:79999,old:89999,badge:'sale',img:'https://m.media-amazon.com/images/I/71nd+jBIGkL._AC_SL1500_.jpg',specs:['24GB GDDR6','PCIe 4.0','384-bit'],stars:4,reviews:98},
+  {id:4,name:'Intel Arc A770 16GB',brand:'Intel',cat:'GPU',price:28999,old:34000,badge:'sale',img:'https://m.media-amazon.com/images/I/71nd+jBIGkL._AC_SL1500_.jpg',specs:['16GB GDDR6','PCIe 4.0','256-bit'],stars:4,reviews:55},
+  // CPUs
+  {id:5,name:'AMD Ryzen 9 9900X',brand:'AMD',cat:'CPU',price:32999,old:44000,badge:'hot',img:'https://www.amd.com/content/dam/amd/en/images/products/processors/ryzen/2523266-ryzen-9-7900x-PIB-1260x709.png',specs:['12C/24T','5.6GHz','AM5'],stars:5,reviews:186},
+  {id:6,name:'Intel Core Ultra 9 285K',brand:'Intel',cat:'CPU',price:44999,old:52000,badge:'new',img:'https://www.amd.com/content/dam/amd/en/images/products/processors/ryzen/2523266-ryzen-9-7900x-PIB-1260x709.png',specs:['24C/24T','5.7GHz','LGA1851'],stars:5,reviews:72},
+  {id:7,name:'AMD Ryzen 5 7600X',brand:'AMD',cat:'CPU',price:16999,old:22000,badge:'best',img:'https://www.amd.com/content/dam/amd/en/images/products/processors/ryzen/2523266-ryzen-9-7900x-PIB-1260x709.png',specs:['6C/12T','5.3GHz','AM5'],stars:4,reviews:310},
+  {id:8,name:'Intel Core i5-14600K',brand:'Intel',cat:'CPU',price:20999,old:26000,badge:'sale',img:'https://www.amd.com/content/dam/amd/en/images/products/processors/ryzen/2523266-ryzen-9-7900x-PIB-1260x709.png',specs:['14C/20T','5.3GHz','LGA1700'],stars:4,reviews:248},
+  // RAM
+  {id:9,name:'Corsair Dominator 32GB DDR5-6000',brand:'Corsair',cat:'RAM',price:11999,old:15000,badge:'hot',img:'https://m.media-amazon.com/images/I/71G-YAG6CLL._AC_SL1500_.jpg',specs:['32GB','DDR5-6000','CL30'],stars:5,reviews:89},
+  {id:10,name:'G.Skill Trident Z5 64GB DDR5',brand:'G.Skill',cat:'RAM',price:21999,old:28000,badge:'new',img:'https://m.media-amazon.com/images/I/71G-YAG6CLL._AC_SL1500_.jpg',specs:['64GB','DDR5-7200','CL34'],stars:5,reviews:44},
+  {id:11,name:'Kingston Fury Beast 16GB DDR4',brand:'Kingston',cat:'RAM',price:3499,old:4500,badge:'sale',img:'https://m.media-amazon.com/images/I/71G-YAG6CLL._AC_SL1500_.jpg',specs:['16GB','DDR4-3200','CL16'],stars:4,reviews:520},
+  // SSD
+  {id:12,name:'Samsung 980 Pro 2TB NVMe',brand:'Samsung',cat:'SSD',price:11999,old:15000,badge:'best',img:'https://images.samsung.com/is/image/samsung/p6pim/uk/mz-v8p2t0bw/gallery/uk-980-pro-mz-v8p2t0bw-530891557?$650_519_PNG$',specs:['2TB','7000MB/s','PCIe 4.0'],stars:5,reviews:430},
+  {id:13,name:'WD Black SN850X 1TB',brand:'WD',cat:'SSD',price:7499,old:9000,badge:'sale',img:'https://images.samsung.com/is/image/samsung/p6pim/uk/mz-v8p2t0bw/gallery/uk-980-pro-mz-v8p2t0bw-530891557?$650_519_PNG$',specs:['1TB','7300MB/s','PCIe 4.0'],stars:5,reviews:290},
+  {id:14,name:'Seagate Barracuda 4TB HDD',brand:'Seagate',cat:'SSD',price:5999,old:7500,badge:null,img:'https://images.samsung.com/is/image/samsung/p6pim/uk/mz-v8p2t0bw/gallery/uk-980-pro-mz-v8p2t0bw-530891557?$650_519_PNG$',specs:['4TB','7200RPM','SATA III'],stars:4,reviews:680},
+  // Motherboards
+  {id:15,name:'ASUS ROG Maximus Z890 Hero',brand:'ASUS',cat:'Motherboard',price:52999,old:62000,badge:'new',img:'https://dlcdnwebimgs.asus.com/gain/B2A13849-5A1E-4856-83F4-5B03F94B2E38/w1000/h732',specs:['LGA1851','DDR5','PCIe 5.0'],stars:5,reviews:36},
+  {id:16,name:'MSI MEG X670E ACE',brand:'MSI',cat:'Motherboard',price:44999,old:55000,badge:'hot',img:'https://dlcdnwebimgs.asus.com/gain/B2A13849-5A1E-4856-83F4-5B03F94B2E38/w1000/h732',specs:['AM5','DDR5','E-ATX'],stars:5,reviews:58},
+  {id:17,name:'Gigabyte B650E Aorus Elite',brand:'Gigabyte',cat:'Motherboard',price:18999,old:24000,badge:'best',img:'https://dlcdnwebimgs.asus.com/gain/B2A13849-5A1E-4856-83F4-5B03F94B2E38/w1000/h732',specs:['AM5','DDR5','ATX'],stars:4,reviews:142},
+  // Cabinets
+  {id:18,name:'Lian Li O11 Dynamic EVO XL',brand:'Lian Li',cat:'Cabinet',price:16999,old:19000,badge:'new',img:'https://m.media-amazon.com/images/I/71jFpz5LOEL._AC_SL1500_.jpg',specs:['E-ATX','Dual Chamber','Tempered Glass'],stars:5,reviews:88},
+  {id:19,name:'NZXT H9 Elite Mid Tower',brand:'NZXT',cat:'Cabinet',price:14999,old:17000,badge:'hot',img:'https://m.media-amazon.com/images/I/71jFpz5LOEL._AC_SL1500_.jpg',specs:['Mid Tower','4-Panel Glass','Dual Chamber'],stars:5,reviews:104},
+  {id:20,name:'Fractal Design Torrent Nano',brand:'Fractal',cat:'Cabinet',price:9999,old:12000,badge:'sale',img:'https://m.media-amazon.com/images/I/71jFpz5LOEL._AC_SL1500_.jpg',specs:['ITX','High Airflow','Tempered Glass'],stars:4,reviews:67},
+  // SMPS
+  {id:21,name:'Corsair RM1000x 1000W Gold',brand:'Corsair',cat:'SMPS',price:13999,old:17000,badge:'best',img:'https://m.media-amazon.com/images/I/81s+yAFbA8L._AC_SL1500_.jpg',specs:['1000W','80+ Gold','Fully Modular'],stars:5,reviews:230},
+  {id:22,name:'Seasonic Prime TX-1000 Titanium',brand:'Seasonic',cat:'SMPS',price:21999,old:26000,badge:'new',img:'https://m.media-amazon.com/images/I/81s+yAFbA8L._AC_SL1500_.jpg',specs:['1000W','80+ Titanium','Fanless Mode'],stars:5,reviews:87},
+  {id:23,name:'Cooler Master MWE 650W Bronze',brand:'Cooler Master',cat:'SMPS',price:4499,old:6000,badge:'sale',img:'https://m.media-amazon.com/images/I/81s+yAFbA8L._AC_SL1500_.jpg',specs:['650W','80+ Bronze','Semi Modular'],stars:4,reviews:360},
+  // Cooling
+  {id:24,name:'Noctua NH-D15 Chromax Black',brand:'Noctua',cat:'Cooling',price:8999,old:11000,badge:'best',img:'https://m.media-amazon.com/images/I/81fkP6OYSKL._AC_SL1500_.jpg',specs:['Dual Tower','NF-A15 Fans','6 Heatpipes'],stars:5,reviews:512},
+  {id:25,name:'Corsair H150i Elite Capellix 360mm',brand:'Corsair',cat:'Cooling',price:14999,old:18000,badge:'hot',img:'https://m.media-amazon.com/images/I/81fkP6OYSKL._AC_SL1500_.jpg',specs:['360mm AIO','RGB','3x LL120 Fans'],stars:5,reviews:198},
+  {id:26,name:'DeepCool LT720 360mm AIO',brand:'DeepCool',cat:'Cooling',price:9999,old:13000,badge:'new',img:'https://m.media-amazon.com/images/I/81fkP6OYSKL._AC_SL1500_.jpg',specs:['360mm AIO','Infinity Mirror','ARGB'],stars:4,reviews:89},
+  // Monitors
+  {id:27,name:'LG UltraGear 27" 4K 144Hz',brand:'LG',cat:'Monitor',price:44999,old:55000,badge:'new',img:'https://www.lg.com/us/images/monitors/md08003744/gallery/DZ-01.jpg',specs:['27"','4K 144Hz','1ms GTG'],stars:5,reviews:142},
+  {id:28,name:'Samsung Odyssey G7 32" QHD',brand:'Samsung',cat:'Monitor',price:34999,old:42000,badge:'hot',img:'https://www.lg.com/us/images/monitors/md08003744/gallery/DZ-01.jpg',specs:['32"','QHD 240Hz','1ms VA'],stars:5,reviews:187},
+  {id:29,name:'BenQ Mobiuz 24" 280Hz IPS',brand:'BenQ',cat:'Monitor',price:17999,old:22000,badge:'best',img:'https://www.lg.com/us/images/monitors/md08003744/gallery/DZ-01.jpg',specs:['24"','1080p 280Hz','0.5ms'],stars:4,reviews:234},
+  // Laptops
+  {id:30,name:'ASUS ROG Zephyrus G16 RTX 4090',brand:'ASUS',cat:'Laptop',price:219999,old:249999,badge:'new',img:'https://dlcdnwebimgs.asus.com/gain/DE2EA84B-5E0B-4DCB-A30D-2693D21DDEF1/w1000/h732',specs:['RTX 4090','R9 7945HX','32GB DDR5'],stars:5,reviews:56},
+  {id:31,name:'MSI Raider GE78HX i9 RTX 4080',brand:'MSI',cat:'Laptop',price:179999,old:199999,badge:'hot',img:'https://dlcdnwebimgs.asus.com/gain/DE2EA84B-5E0B-4DCB-A30D-2693D21DDEF1/w1000/h732',specs:['RTX 4080','i9-13980HX','64GB DDR5'],stars:5,reviews:43},
+  {id:32,name:'Lenovo Legion Pro 7i Gen 9',brand:'Lenovo',cat:'Laptop',price:154999,old:174999,badge:'sale',img:'https://dlcdnwebimgs.asus.com/gain/DE2EA84B-5E0B-4DCB-A30D-2693D21DDEF1/w1000/h732',specs:['RTX 4080','i9-14900HX','32GB'],stars:4,reviews:78},
+  // Keyboard
+  {id:33,name:'ASUS ROG Strix Scope NX RGB',brand:'ASUS',cat:'Keyboard',price:8499,old:10500,badge:'hot',img:'https://dlcdnwebimgs.asus.com/gain/03FA4B80-6FE6-4CD1-B6E5-FA51C0E5CBAF/w1000/h732',specs:['Mech Switch','Per-key RGB','USB-C'],stars:5,reviews:312},
+  {id:34,name:'Corsair K70 RGB Pro TKL',brand:'Corsair',cat:'Keyboard',price:9999,old:12000,badge:'new',img:'https://dlcdnwebimgs.asus.com/gain/03FA4B80-6FE6-4CD1-B6E5-FA51C0E5CBAF/w1000/h732',specs:['Cherry MX','TKL','Per-key RGB'],stars:5,reviews:198},
+];
+
+let cart=0,currentFilter='All',displayed=[];
+
+function stars(n){return'⭐'.repeat(n)}
+function inr(n){return'₹'+n.toLocaleString('en-IN')}
+
+function renderProducts(list){
+  const g=document.getElementById('productsGrid');
+  if(!list.length){g.innerHTML='<div style="grid-column:1/-1;text-align:center;padding:60px;color:var(--muted)">No products found.</div>';return;}
+  g.innerHTML=list.map(p=>`
+    <div class="product-card">
+      ${p.badge?`<div class="product-badge badge-${p.badge}">${{new:'New',hot:'Hot',sale:'Sale',best:'Best'}[p.badge]}</div>`:''}
+      <div class="product-img">
+        <img src="${p.img}" alt="${p.name}" onerror="this.style.display='none';this.parentNode.style.background='var(--bg4)'">
+        <div class="product-img-overlay"></div>
+      </div>
+      <div class="product-body">
+        <div class="product-brand">${p.brand}</div>
+        <div class="product-name">${p.name}</div>
+        <div>${stars(p.stars)}<span style="font-size:11px;color:var(--muted)">(${p.reviews})</span></div>
+        <div class="product-specs">${p.specs.map(s=>`<span class="spec-tag">${s}</span>`).join('')}</div>
+        <div class="product-bottom">
+          <div>
+            <div class="product-price">${inr(p.price)}</div>
+            ${p.old?`<div class="product-price-old">${inr(p.old)}</div>`:''}
+          </div>
+          <button class="btn-add" onclick="addToCart('${p.name.replace(/'/g,"\\'")}')">+</button>
+        </div>
+      </div>
+    </div>`).join('');
+}
+
+function filterProducts(cat,btn){
+  currentFilter=cat;
+  document.getElementById('productsTitle').textContent=cat==='All'?'ALL PRODUCTS':cat.toUpperCase()+' COMPONENTS';
+  if(btn){document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');}
+  const filtered=cat==='All'?products:products.filter(p=>p.cat===cat);
+  displayed=filtered.slice(0,8);
+  renderProducts(displayed);
+  document.getElementById('products').scrollIntoView({behavior:'smooth'});
+}
+
+function sortProducts(){
+  const v=document.getElementById('sortSelect').value;
+  let s=[...displayed];
+  if(v==='price-low')s.sort((a,b)=>a.price-b.price);
+  else if(v==='price-high')s.sort((a,b)=>b.price-a.price);
+  else if(v==='rating')s.sort((a,b)=>b.stars-a.stars||b.reviews-a.reviews);
+  renderProducts(s);
+}
+
+function loadMore(){
+  const all=currentFilter==='All'?products:products.filter(p=>p.cat===currentFilter);
+  const more=all.slice(displayed.length,displayed.length+8);
+  if(!more.length){alert('All products are loaded!');return;}
+  displayed=[...displayed,...more];
+  renderProducts(displayed);
+}
+
+function liveSearch(q){
+  if(!q){displayed=products.slice(0,8);renderProducts(displayed);return;}
+  const r=products.filter(p=>p.name.toLowerCase().includes(q.toLowerCase())||p.brand.toLowerCase().includes(q.toLowerCase())||p.cat.toLowerCase().includes(q.toLowerCase()));
+  renderProducts(r);
+}
+
+function addToCart(name){
+  cart++;
+  document.getElementById('cartCount').textContent=cart;
+  const n=document.getElementById('cartNotif');
+  n.textContent=`✅ "${name.length>35?name.substring(0,35)+'...':name}" added!`;
+  n.classList.add('show');
+  setTimeout(()=>n.classList.remove('show'),2500);
+}
+
+function showCart(){alert(`🛒 You have ${cart} item(s) in cart.\n\nCheckout coming soon!`);}
+
+function subscribe(){
+  const e=document.getElementById('emailInput').value;
+  if(!e||!e.includes('@')){alert('Please enter a valid email!');return;}
+  alert(`🎉 Subscribed! You'll get our best deals at ${e}`);
+  document.getElementById('emailInput').value='';
+}
+
+function scroll2(id){document.getElementById(id).scrollIntoView({behavior:'smooth'})}
+
+// countdown
+let t=8*3600+34*60+22;
+setInterval(()=>{
+  if(t<=0)return; t--;
+  const h=Math.floor(t/3600),m=Math.floor((t%3600)/60),s=t%60;
+  document.getElementById('th').textContent=String(h).padStart(2,'0');
+  document.getElementById('tm').textContent=String(m).padStart(2,'0');
+  document.getElementById('ts').textContent=String(s).padStart(2,'0');
+},1000);
+
+// init
+displayed=products.slice(0,8);
+renderProducts(displayed);
+</script>
+</body>
+</html>
